@@ -20,6 +20,15 @@ jobs:
       - run: cmake --build .
       - run: cmake --build . --target test
       - run: cmake --build . --target package
+      - name: Install Doxygen and Graphviz
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      - name: Generate Documentation
+        run: doxygen Doxyfile
+      - name: Deploy Documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
