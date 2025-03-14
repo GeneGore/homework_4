@@ -12,6 +12,7 @@
 #include <list>
 #include <string>
 #include <tuple>
+#include <cstdint>
 
 /*!
   \brief Шаблонная функция для интов
@@ -23,12 +24,12 @@ void print_ip(T T_INT){
     std::size_t N_bytes = sizeof(T_INT);
 //    std::cout<<"N_bytes "<<N_bytes<<std::endl;
 
-    for(int i=0; i<N_bytes; ++i){
+    for(std::size_t i=0; i<N_bytes; ++i){
 
         if(i!=0) std::cout<<".";
 
         int shift = (N_bytes-1-i)*8;
-        T resINT = T_INT & ((uint64_t)255<<shift);
+        T resINT = T_INT & (static_cast<uint64_t>(255)<<shift);
 //        std::cout<<" i "<< i << " shift "<< shift<<std::endl;
 
         std::cout<<static_cast<int>(resINT>>shift);
