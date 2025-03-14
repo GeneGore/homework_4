@@ -34,6 +34,7 @@ void print_ip(T T_INT){
         std::cout<<static_cast<int>(resINT>>shift);
     }
     std::cout<<"\n";
+
 }
 
 template<>
@@ -162,7 +163,8 @@ int main()
 //        print_ip( std::make_tuple(123, "sdfsdfsdf", 789, 0) );
         print_ip( std::make_tuple(123, 456, 789, 0) );                                      // 123.456.789.0
     }
-    catch(std::invalid_argument err){
+    catch(const std::invalid_argument& err){
+
         std::cout<<"Gotcha: "<<err.what()<<std::endl;
     }
 
