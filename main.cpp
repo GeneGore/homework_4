@@ -12,71 +12,36 @@
 #include <list>
 #include <string>
 #include <tuple>
+#include <cstdint>
 
 /*!
   \brief Шаблонная функция для интов
 
 */
 template<typename T>
-/*void*/std::enable_if_t<std::is_integral_v<T>, void> print_ip(T T_INT){ //использовать is_integral ?
+std::enable_if_t<std::is_integral_v<T>, void> print_ip(T T_INT){
 
     std::size_t N_bytes = sizeof(T_INT);
-//    std::cout<<"N_bytes "<<N_bytes<<std::endl;
 
-    for(int i=0; i<N_bytes; ++i){
+    for(std::size_t i=0; i<N_bytes; ++i){
 
         if(i!=0) std::cout<<".";
 
         int shift = (N_bytes-1-i)*8;
         T resINT = T_INT & ((uint64_t)255<<shift);
-//        std::cout<<" i "<< i << " shift "<< shift<<std::endl;
 
         std::cout<<static_cast<int>(resINT>>shift);
     }
     std::cout<<"\n";
 }
 
-//template</*typename T*/>
-//void print_ip(std::string str){
-//    std::cout<<str<<"\n";
-//}
-
-template<typename T/*, typename Enable = typename std::enable_if<!std::is_same<T, std::string>::value, void>::type */>
-/*void*/std::enable_if_t<std::is_same_v<T, std::string>, void> print_ip(/*std::string*/T str){
+template<typename T>
+std::enable_if_t<std::is_same_v<T, std::string>, void> print_ip(T str){
     std::cout<<str<<"\n";
 }
 
-//template<>
-//void print_ip(std::vector<int> vec){
-
-//    auto it = vec.begin();
-//    for(; it != vec.end(); ++it){
-//        if(it != vec.begin()) std::cout<<".";
-//        std::cout<<*it;
-//    }
-
-//    std::cout<<"\n";
-//}
-
-//template<>
-//void print_ip(std::list<short> list){
-
-//    auto it = list.begin();
-
-//    for(; it != list.end(); ++it){
-//        if(it != list.begin()) std::cout<<".";
-//        std::cout<<*it;
-//    }
-
-//    std::cout<<"\n";
-//}
-
-//template<typename T> //пу-пу-пу
-//auto print_ip(const T& container)->std::enable_if_t<!std::is_same_v<T, std::string> && std::is_class_v<T>
-// && std::is_same_v< decltype(std::declval<T>().begin()), typename T::const_iterator> >, void >
-
-template<typename T/*, typename Enable = typename std::enable_if_t<!std::is_same<T, std::string>::value, void>*/>
-std::enable_if_t< /*!std::is_same_v<T, std::string> &&*/ ( std::is_same_v<T, std::vector<typename T::value_type>> || std::is_same_v<T, std::list<typename T::value_type>> ), void> print_ip(const T& container)/*->decltype (container.begin(), container.end(), void())*/
+template<typename T>
+std::enable_if_t< ( std::is_same_v<T, std::vector<typename T::value_type>> || std::is_same_v<T, std::list<typename T::value_type>> ), void> print_ip(const T& container)/*->decltype (container.begin(), container.end(), void())*/
 {
 
     auto it = container.begin();
@@ -113,11 +78,7 @@ constexpr bool checkTuple(const std::tuple<T...>& ){
 template<std::size_t i = 0, typename... T>
 void print_ip(const std::tuple<T...>& t){
 
-//    static_assert(!checkTuple(t),"compile failure");
-
     if(!checkTuple(t)) {
-//        std::cout<<"WTF!"<<std::endl;
-
         throw std::invalid_argument("Not same types!");
     }
 
@@ -166,7 +127,7 @@ int main()
 //        print_ip( std::make_tuple(123, "sdfsdfsdf", 789, 0) );
         print_ip( std::make_tuple(123, 456, 789, 0) );                                      // 123.456.789.0
     }
-    catch(std::invalid_argument err){
+    catch(const std::invalid_argument& err){
         std::cout<<"Gotcha: "<<err.what()<<std::endl;
     }
 
