@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['test_0',['Test',['../md_README.html#autotoc_md2',1,'']]]
+  ['examples_0',['OTUS C++ course CI/CD examples',['../md_README.html#autotoc_md0',1,'']]]
 ];

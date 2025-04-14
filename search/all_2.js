@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['examples_0',['OTUS C++ course CI/CD examples',['../md_README.html#autotoc_md0',1,'']]]
+  ['boost_5fauto_5ftest_5fcase_0',['BOOST_AUTO_TEST_CASE',['../test__version_8cpp.html#a5a8f1e117b104260d857ed534915b417',1,'test_version.cpp']]],
+  ['boost_5ftest_5fmodule_1',['BOOST_TEST_MODULE',['../test__version_8cpp.html#a6b2a3852db8bb19ab6909bac01859985',1,'test_version.cpp']]],
+  ['build_2',['Build',['../md_README.html#autotoc_md1',1,'']]]
 ];

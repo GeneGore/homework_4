@@ -24,21 +24,27 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "print_ip", "index.html", [
     [ "README", "md_README.html", [
       [ "OTUS C++ course CI/CD examples", "md_README.html#autotoc_md0", null ],
       [ "Build", "md_README.html#autotoc_md1", null ],
       [ "Test", "md_README.html#autotoc_md2", null ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"files.html"
+"CMakeCCompilerId_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
