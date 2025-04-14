@@ -28,7 +28,7 @@ std::enable_if_t<std::is_integral_v<T>, void> print_ip(T T_INT){
         if(i!=0) std::cout<<".";
 
         int shift = (N_bytes-1-i)*8;
-        T resINT = T_INT & ((uint64_t)255<<shift);
+        uint64_t resINT = T_INT & ((uint64_t)255<<shift);
 
         std::cout<<static_cast<int>(resINT>>shift);
     }
